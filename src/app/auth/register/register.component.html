@@ -1,0 +1,49 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-50 px-4 sm:px-6 lg:px-8">
+  <div class="w-full max-w-md p-6 sm:p-8 bg-white rounded-lg shadow-md">
+    <h2 class="text-2xl sm:text-3xl font-bold text-center text-black mb-6 sm:mb-8">Register</h2>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-4 sm:space-y-6">
+      <ng-container *ngFor="let field of fields">
+        <div class="relative min-h-[5rem] sm:min-h-[5.5rem]">
+          <label [for]="field.name" class="block text-sm font-medium text-gray-700">{{field.label}}</label>
+          <div class="relative">
+            <input
+              [type]="field.type"
+              [formControlName]="field.name"
+              [id]="field.name"
+              class="mt-1 w-full px-3 sm:px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400 text-sm sm:text-base"
+              [ngClass]="{'border-red-500': registerForm.get(field.name)?.touched && registerForm.get(field.name)?.invalid}"
+              [placeholder]="field.placeholder"
+            />
+          </div>
+          <div class="absolute bottom-0 left-0 text-red-500 text-xs sm:text-sm mt-1">
+            <div *ngIf="registerForm.get(field.name)?.touched && registerForm.get(field.name)?.invalid">
+              {{getErrorMessage(field.name)}}
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- Submit Button -->
+      <div class="text-center">
+        <button
+          type="submit"
+          class="w-full sm:w-auto text-white bg-black hover:bg-gray-800 rounded-full px-6 py-2 font-semibold text-sm shadow-sm hover:shadow-md transition-all duration-300 ease-in-out"
+        >
+          Register
+        </button>
+      </div>
+    </form>
+
+    <!-- Redirect to Login Button -->
+    <div class="text-center mt-4">
+      <p class="text-sm text-gray-600 mb-3">Already have an account?</p>
+      <a
+        routerLink="/login"
+        class="w-full sm:w-auto text-black bg-white border border-black hover:bg-gray-100 rounded-full px-6 py-2 font-semibold text-sm shadow-sm hover:shadow-md transition-all duration-300 ease-in-out"
+      >
+        Sign In
+      </a>
+    </div>
+  </div>
+</div>

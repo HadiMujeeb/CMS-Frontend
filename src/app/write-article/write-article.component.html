@@ -1,0 +1,36 @@
+<div class="flex flex-col min-h-screen bg-gray-100" [formGroup]="form">
+  <!-- Header -->
+  <header class="flex items-center justify-between p-4 bg-white shadow-sm">
+    <div class="flex items-center space-x-2">
+      <div class="text-2xl font-bold text-black cursor-pointer hover:cursor-pointer" routerLink="/dashboard">
+        Boss
+      </div>
+    </div>
+
+    <div class="flex items-center space-x-3">
+      <button
+        class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-green-200 transition duration-200"
+        (click)="publish()"
+        [disabled]="form.invalid"
+      >
+        Publish
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-1 p-4 md:p-8 max-w-3xl mx-auto w-full">
+    <input
+      type="text"
+      formControlName="title"
+      placeholder="Title"
+      class="w-full text-4xl md:text-5xl font-bold text-gray-800 placeholder-gray-400 focus:outline-none bg-transparent resize-none mb-4"
+    />
+
+    <textarea
+      formControlName="content"
+      placeholder="Tell your story..."
+      class="w-full text-lg md:text-xl text-gray-700 placeholder-gray-400 focus:outline-none bg-transparent resize-none h-96"
+    ></textarea>
+  </main>
+</div>
